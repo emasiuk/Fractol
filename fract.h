@@ -22,9 +22,16 @@ typedef struct s_win
 	double y_win;
 	double x_win;
 	int color;
+	int iter;
 }				t_win;
 
-
+int		my_key_funct_julia(int keycode, t_win *cd);
+void	draw_julia(t_win *cd);
+void	Julia(t_win *cd);
+void	coord_mandel(t_win *cd, double i, double j);
+void	draw_mandel(t_win *cd);
+int		my_key_funct_mandel(int keycode, t_win *cd);
+void	make_image(t_win *cd);
 void make_window(t_win *cd);
 void    ft_image_pixel_put(t_win *cd, int x, int y, int rgb);
 void	Mandelbrot(t_win *cd);

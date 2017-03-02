@@ -14,3 +14,12 @@ void    ft_image_pixel_put(t_win *cd, int x, int y, int rgb)
         ft_memcpy((void *)(image + y * cd[0].s_x * (bpp / 8)) + x * (bpp / 8),
             (void *)&tmp, 4);
 }
+
+void	make_window(t_win *cd)
+{
+	cd[0].iter = 50;
+	cd[0].mlx1 = mlx_init();
+	cd[0].s_x = 800;
+	cd[0].s_y = 800;
+	cd[0].win1 = mlx_new_window(cd[0].mlx1, cd[0].s_x, cd[0].s_y, "FRACT1");
+}
