@@ -1,6 +1,6 @@
 #include "fract.h"
 
-int		my_key_funct_mandel(int keycode, t_win *cd)
+int		my_key_funct_burning(int keycode, t_win *cd)
 {
 	key_funct_for_all(keycode, cd);
 	if (keycode == 53)
@@ -9,30 +9,30 @@ int		my_key_funct_mandel(int keycode, t_win *cd)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
 		cd[0].iter += 2;
-		draw_mandel(cd);
+		draw_burning(cd);
 	}
 	if (keycode == 78)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
 		(cd[0].iter > 5) ? cd[0].iter -= 2 : 1;
-		draw_mandel(cd);
+		draw_burning(cd);
 	}
 	if (keycode == 67)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
 		cd[0].color += 10000;
-		draw_mandel(cd);
+		draw_burning(cd);
 	}
 	if (keycode == 75)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
 		(cd[0].color > 15000) ? cd[0].color -= 10000 : 1;
-		draw_mandel(cd);
+		draw_burning(cd);
 	}
 	return (1);
 }
 
-void	coord_mandel(t_win *cd, double i, double j)
+void	coord_burning(t_win *cd, double i, double j)
 {
 	double x;
 	double y;
@@ -45,7 +45,7 @@ void	coord_mandel(t_win *cd, double i, double j)
 	while ((x*x + y *y) < 4 && iterr < cd[0].iter)
 	{
 		temp = x*x - y *y + cd[0].x_win;
-		y = 2 * x * y + cd[0].y_win;
+		y = fabs(2 * x * y) + cd[0].y_win;
 		x = temp;
 		iterr++;
 	}
@@ -55,7 +55,7 @@ void	coord_mandel(t_win *cd, double i, double j)
 		ft_image_pixel_put(cd, j, i, 0);
 }
 
-void	draw_mandel(t_win *cd)
+void	draw_burning(t_win *cd)
 {
 	double i;
 	double j;
@@ -69,19 +69,19 @@ void	draw_mandel(t_win *cd)
 		while (++j < cd[0].s_x)
 		{
 			cd[0].x_win = ((j - cd[0].s_x / 2) * 4) / cd[0].s_x;
-			coord_mandel(cd , i, j);
+			coord_burning(cd , i, j);
 		}
 	}
 	mlx_put_image_to_window(cd[0].mlx1, cd[0].win1, cd[0].image, 0, 0);
-	mlx_key_hook(cd[0].win1, my_key_funct_mandel, cd);
+	mlx_key_hook(cd[0].win1, my_key_funct_burning, cd);
 }
 
 
-void	Mandelbrot(t_win *cd)
+void	Burning_ship(t_win *cd)
 {
 	cd[0].x_win = 0;
 	cd[0].y_win = 0;
-	cd[0].color = 1000000;
-	draw_mandel(cd);
+	cd[0].color = 1000000000;
+	draw_burning(cd);
 	mlx_loop(cd[0].mlx1);
 }

@@ -2,6 +2,7 @@
 
 int		my_key_funct_julia(int keycode, t_win *cd)
 {
+	key_funct_for_all(keycode, cd);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 69)
@@ -13,8 +14,8 @@ int		my_key_funct_julia(int keycode, t_win *cd)
 	if (keycode == 78)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
-		cd[0].iter -= 2;
-		cd[0].iter > 3 ? draw_julia(cd) : 0;
+		(cd[0].iter > 5) ? cd[0].iter -= 2 : 1;
+		draw_julia(cd);
 	}
 	if (keycode == 67)
 	{
@@ -25,7 +26,7 @@ int		my_key_funct_julia(int keycode, t_win *cd)
 	if (keycode == 75)
 	{
 		mlx_destroy_image(cd[0].mlx1, cd[0].image);
-		cd[0].color -= 10000;
+		(cd[0].color > 15000) ? cd[0].color -= 10000 : 1;
 		draw_julia(cd);
 	}
 	return (1);

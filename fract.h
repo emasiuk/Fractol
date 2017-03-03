@@ -25,16 +25,28 @@ typedef struct s_win
 	int iter;
 }				t_win;
 
-int		my_key_funct_julia(int keycode, t_win *cd);
-void	draw_julia(t_win *cd);
-void	Julia(t_win *cd);
-void	coord_mandel(t_win *cd, double i, double j);
-void	draw_mandel(t_win *cd);
-int		my_key_funct_mandel(int keycode, t_win *cd);
+void	key_funct_for_all(int keycode, t_win *cd);
+void	change_fract(int keycode, t_win *cd);
+
+
 void	make_image(t_win *cd);
 void make_window(t_win *cd);
 void    ft_image_pixel_put(t_win *cd, int x, int y, int rgb);
+
+
+int		my_key_funct_julia(int keycode, t_win *cd);
+void	draw_julia(t_win *cd);
+void	Julia(t_win *cd);
+
+
+void	coord_mandel(t_win *cd, double i, double j);
+void	draw_mandel(t_win *cd);
+int		my_key_funct_mandel(int keycode, t_win *cd);
 void	Mandelbrot(t_win *cd);
 
+void	draw_burning(t_win *cd);
+void	Burning_ship(t_win *cd);
+void	coord_burning(t_win *cd, double i, double j);
+int		my_key_funct_burning(int keycode, t_win *cd);
 
 #endif
