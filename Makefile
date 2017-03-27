@@ -1,26 +1,31 @@
 NAME = fractol
 
-FLAGS = -03 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -O3
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 LIB = libft/libft.a
 
-SRC =	main.c				\
+SRCS =	main.c				\
 		mandelbrot.c		\
 		key_funct.c			\
 		julia.c				\
 		ft_image.c			\
-		burning_ship.c
+		burning_ship.c		\
+		my_fract.c			\
+		string.c			\
+		shift.c				\
+		zoom.c
 
-BINS = $(SRC:.c = .o)
+BINS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 makelib:
 	make -C libft/
+
 libclean:
-	make -C linft/ clean
+	make -C libft/ clean
 
 libfclean:
 	make -C libft/ fclean
@@ -31,10 +36,10 @@ $(NAME): $(BINS) makelib
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $<
 
-clean: libfclean
+clean: libclean
 	/bin/rm -f $(BINS)
 
-fclean: libclean clean
+fclean: libfclean clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
